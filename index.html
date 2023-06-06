@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width>, initial-scale=1.0" />
+    <title>Display Web</title>
+    <style type="text/css">
+      /* Add */
+      body {
+        font-family: Arial, sans-serif;
+      }
+      /* .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      } */
+      .form-container {
+        max-width: 600px;
+        margin: -20px auto 0;
+        padding: 20px;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .form-group input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .form-group input[type="button"] {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .form-group input[type="button"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <iframe
+        src="https://script.google.com/macros/s/AKfycbxCyDGNjPBaVuZwkW5m2iBKT34fq0qoieLGUBhPLvIaGpm26VwE7fZQ2SBcc2kF_OPgbg/exec"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        width="100%"
+        height="400px"
+        scrolling="auto"
+      >
+      </iframe>
+      <h2>新增待辦事項</h2>
+      <iframe name="hidden_iframe" style="display: none"></iframe>
+      <form
+        id="myForm"
+        action="https://script.google.com/macros/s/AKfycbxCyDGNjPBaVuZwkW5m2iBKT34fq0qoieLGUBhPLvIaGpm26VwE7fZQ2SBcc2kF_OPgbg/exec"
+        method="post"
+        target="hidden_iframe"
+      >
+        <input type="hidden" name="method" value="write" />
+        <div class="form-group">
+          <label for="name">待辦：</label>
+          <input type="text" id="todo" name="todo" placeholder="待辦事項" />
+        </div>
+        <div class="form-group">
+          <label for="remark">備註：</label>
+          <input type="text" id="remark" name="remark" placeholder="填入備註" />
+        </div>
+        <div class="form-group">
+          <input type="button" value="提交" onclick="submitForm()" />
+        </div>
+      </form>
+      <script>
+        function htmlEntity(str) {
+          var tempElement = document.createElement("div");
+          tempElement.innerText = str;
+          return tempElement.innerHTML;
+        }
+
+        function submitForm() {
+          // 取消表單預設的提交行為
+          event.preventDefault();
+
+          // 在此處理表單提交的其他邏輯，例如驗證輸入、處理資料等
+          // 獲取使用者輸入的值並進行 HTML 實體碼轉換
+          var todo = htmlEntity(document.getElementById("todo").value);
+          var remark = htmlEntity(document.getElementById("remark").value);
+
+          // 更新表單輸入欄位的值
+          document.getElementById("todo").value = todo;
+          document.getElementById("remark").value = remark;
+
+          // 手動觸發表單提交
+          document.getElementById("myForm").submit();
+          location.reload();
+        }
+      </script>
+    </div>
+  </body>
+</html>
